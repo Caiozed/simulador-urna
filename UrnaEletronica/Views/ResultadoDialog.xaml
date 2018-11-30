@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="UrnaEletronica.Views.ResultadoDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UrnaEletronica.Views"
+             xmlns:forms="clr-namespace:Forge.Forms.Controls;assembly=Forge.Forms"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d">
+
+    <Border CornerRadius="5" BorderThickness="8" Background="White" BorderBrush="#FF00A8FF">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="#FF0071FF">
+                <TextBlock Text="RESULTADOS" FontSize="28" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="datagrid" IsReadOnly="True" AutoGenerateColumns="False" CanUserDeleteRows="False" ItemsSource="{Binding EleicaoSelecionada.Votos}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Binding="{Binding Usuario.Nome}" Header="Usuario"/>
+                        <DataGridTextColumn Width="*" Binding="{Binding Candidato.Nome}" Header="Candidato"/>
+                        <DataGridTextColumn Width="*" Binding="{Binding Candidato.Cargo.Nome}" Header="Cargo"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="4" Click="Exportar_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <iconPacks:PackIconFontAwesome Kind="FileExportSolid" HorizontalAlignment="Left" />
+                        <TextBlock Margin="15,0,15,0" Grid.Column="1" Text="EXPORTAR PARA TXT"/>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
